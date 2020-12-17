@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.KinesisFirehoseEvent;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -22,7 +23,8 @@ public class FirehoseEventHandler implements RequestHandler<KinesisFirehoseEvent
         return input.getRecords()
                 .stream()
                 .map(record -> {
-                    System.out.println(record);
+                    String data = new String(record.getData().array(), StandardCharsets.UTF_8);
+                    System.out.println(data);
                     return record.getData().toString();
                 })
                 .collect(toList());
