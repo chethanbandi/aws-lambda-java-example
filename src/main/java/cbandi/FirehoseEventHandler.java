@@ -17,6 +17,7 @@ public class FirehoseEventHandler implements RequestHandler<KinesisFirehoseEvent
         System.out.println("Running test lambda");
         if(input.getRecords() == null || input.getRecords().isEmpty()) {
             System.out.println("Got an null/empty list");
+            System.out.println("Working on github.dev looks cool");
             return emptyList();
         }
 
